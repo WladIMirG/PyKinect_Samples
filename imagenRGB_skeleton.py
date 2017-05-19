@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Titulo: imagenRGB.py
+Titulo: imagenRGB_skeñeton.py
 Descripcion: Esta muestra indica como es el uso de la libreria pykinect para
-			extraer la imagen RGB del sensor.
+			extraer la imagen RGB del sensor junto con los puntos del esqueleto.
 Creado: 17/05/2017
 @author: Wladimir Garces
 """
@@ -32,7 +32,6 @@ def comSkeletons(funcion):
 
 @comSkeletons
 def manos():
-	# print "Este Objeto si es llamable: %d+%d=%d"%(n,m,n+m)
 	global video
 	for extremidad in SKULL.keys():
 		print 
@@ -42,9 +41,6 @@ def manos():
 			p = nui.SkeletonEngine.skeleton_to_depth_image(Position, 640, 480)
 			cv2.circle(video, (int(p[0]), int(p[1])), 5, (255, 0, 0), thickness=5)
 
-	#print "(%d, %d)" % (int(hr[0]), int(hr[1]))
-	
-	#cv2.circle(video, (int(hl[0]), int(hl[1])), 20, (0, 0, 255), thickness=10)
 def RGB(frame):
 	"""Recolecta y dibuja la imagen RGB con las libreria numpy y CV2"""
 	global video

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Titulo: imagenRGB.py
+Titulo: imagenDEPTH.py
 Descripcion: Esta muestra indica como es el uso de la libreria pykinect para
-			extraer la imagen RGB del sensor.
+			extraer la imagen de profundidad del sensor.
 Creado: 17/05/2017
 @author: Wladimir Garces
 """
