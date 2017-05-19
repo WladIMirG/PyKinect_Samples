@@ -4,6 +4,7 @@ import pykinect
 from pykinect import nui
 import cv2
 import numpy as np
+from time import sleep
 
 class kinect():
     def __init__(self):
