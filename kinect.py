@@ -9,8 +9,6 @@ from time import sleep
 class kinect():
     def __init__(self):
         self.Runtime = nui.Runtime()
-        hol = 'Hola'
-        print hol
 
     def Run(self):
         

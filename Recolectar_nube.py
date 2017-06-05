@@ -47,7 +47,6 @@ def video_frame_ready( frame ):
         cv2.imshow( 'frame', video )
         sleep(1)
 def guardar(Dato):
-#    sleep(0.1)
     ScIO.savemat('Nuevos_cursor.mat', mdict={'NewPos': Dato})
 
 # Depth
@@ -63,25 +62,25 @@ def depth_frame_ready( frame ):
 #    y = np.empty( ( 240, 320), np.uint16 )
 #    z = 
     cloundpoint = []#np.empty( ( 240, 320), np.uint16 )
-    x = []
-    y = []
-    z = []
+    X = []
+    Y = []
+    Z = []
 # 2842.5
     depth1 = k*np.tan(((depth/2842.5)+1.1863)) - 0.037
     for columnas in range(0,320,1):
         for filas in range(0,240,1):
 
-            xx = columnas / 320.0
-            yy = filas / 240.0
-            nn = nui.SkeletonEngine.depth_image_to_skeleton(xx, yy, depth[filas, columnas, 0])
+            x = columnas / 320.0
+            y = filas / 240.0
+            punto = nui.SkeletonEngine.depth_image_to_skeleton(x, y, depth[filas, columnas, 0])
             #print nn
 
-            if nn.z > 0.5 and nn.z < 1.2     :
+            if punto.z > 0.5 and punto.z < 1.2:
                 depth1[filas, columnas, 0] = 1
-                x.append(nn.x)
-                y.append(nn.y)
-                z.append(nn.z)
-                cloundpoint.append(nn)
+                X.append(punto.x)
+                Y.append(punto.y)
+                Z.append(punto.z)
+                cloundpoint.append(punto)
                 #print nn
                 #print '<X: %f, Y: %f, Z: %f> <X-columnas: %d, Y-filas: %d>'%(nn.x,nn.y,nn.z,columnas,filas)
             else:
@@ -89,7 +88,6 @@ def depth_frame_ready( frame ):
 
     #for i in range(0,100,1): print 'vector: ', cloundpoint[i]
     guardar(cloundpoint)
-    plt.plot(x,y)
     
 
 
@@ -112,7 +110,6 @@ def depth_frame_ready( frame ):
     cv2.imshow( 'frame', depth )
     cv2.imshow( 'frame1', depth1 )
     sleep(5)
-
     
 def skeleton_frame_ready(frame):
     global skeletons
@@ -124,6 +121,7 @@ if __name__ == '__main__':
     videoDisplay = False
 
     kinect = nui.Runtime()
+    kinect.camera.elevation_angle = -5
 
     skeletons = None
 
